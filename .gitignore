@@ -1,0 +1,8 @@
+#Dont push database
+db.sqlite3
+
+#dont push media files
+media/uploaded_media/
+
+.idea
+.directory
