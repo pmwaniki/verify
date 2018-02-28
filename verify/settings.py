@@ -25,7 +25,7 @@ SECRET_KEY = 'f8ntn8yp3ew(6#55uxt*o(r36uy!owwgbpzuk&g%ap^y-dt#k*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '10.0.10.70','kenbo-pc0050']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '10.0.10.70','kenbo-pc0050', '.kemri-wellcome.org']
 
 
 # Application definition
