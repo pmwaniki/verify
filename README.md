@@ -18,3 +18,7 @@ python manage.py migrate
 
 ### Start server
 ./manage.py runserver 0.0.0.0:8000
+
+
+## Create token for users
+./manage.py drf_create_token <username>
