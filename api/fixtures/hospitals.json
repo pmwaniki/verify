@@ -12,6 +12,7 @@
   {"model": "api.Hospital", "fields": {"id": 66, "name": "Busia District Hospital"}},
   {"model": "api.Hospital", "fields": {"id": 68, "name": "Kitale District Hospital"}},
   {"model": "api.Hospital", "fields": {"id": 70, "name": "Mbale Rural Health DC Hospital"}},
-  {"model": "api.Hospital", "fields": {"id": 71, "name": "Embu Provincial General Hospital"}}
+  {"model": "api.Hospital", "fields": {"id": 71, "name": "Embu Provincial General Hospital"}},
+  {"model": "api.Hospital", "fields": {"id": 72, "name": "Pumwani Maternity Hospital"}}
 ]
 
