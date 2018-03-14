@@ -8,6 +8,9 @@ class Hospital(models.Model):
     id=models.IntegerField(primary_key=True,help_text='Hospital Id')
     name=models.CharField(max_length=250,help_text='Hospital name')
 
+    def __str__(self):
+        return self.name
+
 def get_upload_filename(instance, filname):
     return "uploaded_media/file_%s %s" % (time.strftime("%Y-%m-%d %H_%M_%S"), filname)
 
@@ -21,13 +24,8 @@ class Image(models.Model):
     date_created=models.DateField(auto_now_add=True)
     file_path = models.FileField(upload_to=get_upload_filename, verbose_name= "image file")
 
-
-
-
-
-
     def __str__(self):
-        return 'Hospital: {0}, ipno: {1}'.format(self.get_hosp_id_display(), self.ipno)
+        return 'Hospital: {0}, ipno: {1}'.format(self.hosp_id, self.ipno)
 
 
 
