@@ -4,24 +4,9 @@ import time
 import json
 
 # Create your models here.
-hosp_choices=((51,'Kiambu District Hospital'),
-              (52,'Machakos Level 5 Hospital'),
-              (53,'Mama Lucy Kibaki Hospital'),
-              (54,'Mbagathi District Hospital'),
-              (55,'Kerugoya District Hospital'),
-              (57,'Karatina District Hospital'),
-              (58,'Nyeri Provincial General Hospital'),
-              (62,'Kisumu East District Hospital'),
-              (63,'Kakamega Provincial General Hospital'),
-              (64,'Vihiga District Hospital'),
-              (66,'Busia District Hospital'),
-              (68,'Kitale District Hospital'),
-              (70,'Mbale Rural Health DC Hospital'),
-              (71,'Embu Provincial General Hospital'))
-
-
-
-
+class Hospital(models.Model):
+    id=models.IntegerField(primary_key=True,help_text='Hospital Id')
+    name=models.CharField(max_length=250,help_text='Hospital name')
 
 def get_upload_filename(instance, filname):
     return "uploaded_media/file_%s %s" % (time.strftime("%Y-%m-%d %H_%M_%S"), filname)
@@ -30,7 +15,7 @@ class Image(models.Model):
 
     file_types = ((1, "jpeg/png"), (2, "pdf"))
     user=models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
-    hosp_id = models.IntegerField(choices=hosp_choices, verbose_name="Hospital")
+    hosp_id = models.ForeignKey(Hospital,on_delete=models.CASCADE)
     record_id=models.CharField(max_length=100,verbose_name="Record id")
     ipno = models.CharField(max_length=250, verbose_name="iP Number")
     date_created=models.DateField(auto_now_add=True)

@@ -1,4 +1,4 @@
-from api.models import Image, Validation,History
+from api.models import Image, Validation,History,Hospital
 from rest_framework import serializers
 
 class ImageSerializer(serializers.ModelSerializer):
@@ -7,14 +7,11 @@ class ImageSerializer(serializers.ModelSerializer):
 		fields=['hosp_id','record_id','ipno','date_created','file_path']
 
 
-class Hospital(object):
-	def __init__(self,id,name):
-		self.id=id
-		self.name=name
 
-class HospitalSerializer(serializers.Serializer):
-	id=serializers.IntegerField()
-	name=serializers.CharField(max_length=256)
+class HospitalSerializer(serializers.ModelSerializer):
+	class Meta:
+		model=Hospital
+		fields=['id','name']
 
 class ValidationSerializer(serializers.ModelSerializer):
 	class Meta:

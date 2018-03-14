@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, parser_classes, authentication_c
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser
-from api.models import Image, hosp_choices, Validation, History
+from api.models import Image, Hospital, Validation, History
 from rest_framework.response import Response
 from api.serializers import ImageSerializer, Hospital, HospitalSerializer, ValidationSerializer, HistorySerializer
 from rest_framework import status
@@ -55,7 +55,7 @@ def create_image(request, format=None):
 
 @api_view(['GET'])
 def get_hospitals(request, format=None):
-    hospitals = [Hospital(id=i, name=j) for i, j in hosp_choices]
+    hospitals = Hospital.objects.all()
     serial = HospitalSerializer(hospitals, many=True)
     return Response(serial.data)
 
