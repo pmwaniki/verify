@@ -27,6 +27,11 @@ python manage.py migrate
 ./manage.py createsuperuser
 ```
 
+### Add hospitals from api/fixtures/hospitals.json
+```commandline
+./manage.py loaddata hospitals.json
+```
+
 
 ### Start server
 ```commandline
