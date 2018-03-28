@@ -5,6 +5,10 @@ db.sqlite3
 **/uploaded_media/*
 !**/uploaded_media/.gitkeep
 
+#ignore pycache
+
+api/__pycache__
+
 .idea
 .directory
 
