@@ -7,7 +7,7 @@ db.sqlite3
 
 #ignore pycache
 
-api/__pycache__
+api/__pycache__/*
 
 .idea
 .directory
