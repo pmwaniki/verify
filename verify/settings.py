@@ -132,13 +132,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL='/media/'
 
 #cross origin request
-#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True #allow from request from all
 
-CORS_ORIGIN_WHITELIST = (
-    'localhost:3000',
-    'localhost:3001',
-    '127.0.0.1:3000',
-    '127.0.0.1:3001',
-    '10.0.10.70:3000',
-    'kenbo-pc0050:3000'
-)
+# CORS_ORIGIN_WHITELIST = (  #allow request from only the select domains
+#     'hsuanalytics.kemri-wellcome.org:3333',
+#     'localhost:3333',
+#     'localhost:3000',
+#     'localhost:3001',
+#     '127.0.0.1:3000',
+#     '127.0.0.1:3001',
+#     '10.0.10.70:3000',
+#     'kenbo-pc0050:3000'
+# )
