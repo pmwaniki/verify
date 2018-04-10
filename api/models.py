@@ -90,7 +90,7 @@ class Validation(models.Model):
     name=models.CharField(max_length=100,verbose_name="Name of validation")
     field_unique=ListField(max_length=500,verbose_name="Unique Fields")
     last_updated=models.DateTimeField(verbose_name="Last updated",blank=True,null=True)
-    script=models.CharField(max_length=100,verbose_name="Error script")
+    script=models.CharField(max_length=100,verbose_name="Location of Error script")
     mapping=DictField(max_length=500,verbose_name="Mapping",help_text="Dict of mapping between  {}")
 
 class History(models.Model):
