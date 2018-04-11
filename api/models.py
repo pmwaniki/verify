@@ -29,7 +29,9 @@ class Image(models.Model):
 
 
 
-
+def str_to_json(string):
+    string=string.replace("'","\"")
+    return json.loads(string)
 
 
 class DictField(models.Field):
@@ -44,18 +46,18 @@ class DictField(models.Field):
     def from_db_value(self, value, expression, connection):
         if value is None:
             return value
-        return json.loads(value)
+        return str_to_json(value)
     def to_python(self, value):
         if isinstance(value,dict):
             return value
         if value is None:
             return value
-        return json.loads(value)
+        return str_to_json(value)
 
     def get_prep_value(self, value):
         if value is None:
             return None
-        return json.dumps(value,sort_keys=True)
+        return json.dumps(value)
 
 class ListField(models.Field):
     def __init__(self,max_length,sort=False,*args,**kwargs):
@@ -70,13 +72,13 @@ class ListField(models.Field):
     def from_db_value(self, value, expression, connection):
         if value is None:
             return value
-        return json.loads(value)
+        return str_to_json(value)
     def to_python(self, value):
         if isinstance(value,dict):
             return value
         if value is None:
             return value
-        return json.loads(value)
+        return str_to_json(value)
 
     def get_prep_value(self, value):
         if value is None:
@@ -91,7 +93,7 @@ class Validation(models.Model):
     field_unique=ListField(max_length=500,verbose_name="Unique Fields")
     last_updated=models.DateTimeField(verbose_name="Last updated",blank=True,null=True)
     script=models.CharField(max_length=100,verbose_name="Location of Error script")
-    mapping=DictField(max_length=500,verbose_name="Mapping",help_text="Dict of mapping between  {}")
+    mapping=DictField(max_length=500,verbose_name="Mapping",help_text="Dict of mapping between  {'variable in error script':'variable in image database'}")
 
 class History(models.Model):
     validation=models.ForeignKey(Validation,on_delete=models.CASCADE)
