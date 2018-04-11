@@ -11,6 +11,6 @@ api/tmp
 !**/uploaded_media/.gitkeep
 
 #ignore pycache
-api/__pycache__/
+**/__pycache__/*
 api/__pycache__/views.cpython-36.pyc
 api/__pycache__/views.cpython-34.pyc
