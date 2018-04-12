@@ -64,8 +64,11 @@ def get_hospitals(request, format=None):
 def issues(request, format=None):  # issues?validation=pneum_reanalysis&start=2016-05-01
     query = dict(request.query_params)
     print(query)
-    data = get_errors(query)
-    return Response(json.loads(data), status=status.HTTP_200_OK)
+    try:
+        data = get_errors(query)
+        return Response(json.loads(data), status=status.HTTP_200_OK)
+    except Exception as err:
+        return Response(str(err), status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET'])
