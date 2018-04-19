@@ -9,7 +9,7 @@ class ImageAdmin(admin.ModelAdmin):
     list_display=('user' ,'hosp_id', 'record_id' ,'ipno', 'date_created')
 
 class HistoryAdmin(admin.ModelAdmin):
-    list_display=('validation' ,'values')
+    list_display=('validation' ,'values','checked','note','date_created')
 
 class HospitalAdmin(admin.ModelAdmin):
     list_display=('id' ,'name')

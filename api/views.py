@@ -64,9 +64,17 @@ def get_hospitals(request, format=None):
 def issues(request, format=None):  # issues?validation=pneum_reanalysis&start=2016-05-01
     query = dict(request.query_params)
     print(query)
+    val = Validation.objects.get(validation_id=query.get('validation')[0])
+    unique_keys=val.field_unique
     try:
         data = get_errors(query)
-        return Response(json.loads(data), status=status.HTTP_200_OK)
+        for index,row in data.iterrows():
+            unique_vals =json.loads(row[unique_keys].to_json())
+            history = History(validation=val, values=unique_vals)
+            existing=History.objects.filter(values=history.values)
+            if len(existing)==0:
+                history.save()
+        return Response(json.loads(data.to_json(orient="table")), status=status.HTTP_200_OK)
     except Exception as err:
         return Response(str(err), status=status.HTTP_400_BAD_REQUEST)
 
@@ -99,13 +107,21 @@ def history(request, format=None):
         data = request.data
         print(data)
         validation=Validation.objects.get(validation_id=data["validation"])
-        queryset=History.objects.filter(validation=validation.id,values=data['values'])
-        if len(queryset)==0:
-            new_set=History(validation=validation,values=data['values'])
-            new_set.save()
-        else:
-            queryset.delete()
+
+        if data.get('values') is not None:
+            queryset=History.objects.get(validation=validation.id,values=data['values'])
+
+
+            notes=data.get('notes')
+            if notes is not None:
+                queryset.note=notes
+            else:
+                queryset.checked = not queryset.checked
+
+            queryset.save()
+
+
         new_result=list(History.objects.all().values())
-        print(new_result)
+        #print(new_result)
 
         return Response(new_result)

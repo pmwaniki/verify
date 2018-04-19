@@ -21,4 +21,4 @@ class ValidationSerializer(serializers.ModelSerializer):
 class HistorySerializer(serializers.ModelSerializer):
 	class Meta:
 		model=History
-		fields=["validation","values"]
+		fields=["validation","values","checked","note"]

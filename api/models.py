@@ -97,4 +97,7 @@ class Validation(models.Model):
 
 class History(models.Model):
     validation=models.ForeignKey(Validation,on_delete=models.CASCADE)
-    values=DictField(max_length=1000,blank=True,null=True)
+    values=DictField(max_length=1000,help_text="Unique identifier")
+    checked=models.BooleanField(default=False,help_text="Verified?")
+    note=models.TextField(max_length=1000,default="")
+    date_created=models.DateField(auto_now=True,help_text="Date created")

@@ -1,5 +1,5 @@
 
-from api.models import Validation
+from api.models import Validation, History
 import importlib
 from datetime import datetime
 import pytz
@@ -10,6 +10,7 @@ import os
 
 data_path=os.path.join(BASE_DIR,'api/tmp')
 # rScript=os.path.join(BASE_DIR,'../R-gen-errors/00-main.R')
+rScript=os.path.join('/home/pmwaniki/Dropbox/http/cin-web/pneum_reanalysis/pneum_reanalysis.py')
 
 
 def genIssues(rScript, outCsv="errors.csv", start=None, stop=None):
@@ -28,6 +29,8 @@ def genIssues(rScript, outCsv="errors.csv", start=None, stop=None):
         out, errs=proc.communicate()
         if errs.decode('utf-8') == '':
             data=pd.read_csv(os.path.join(data_path,outCsv))
+
+
         else:
             raise Exception(errs.decode('utf-8'))
     return data
@@ -55,7 +58,7 @@ def get_errors(request):
         validation.save()
         # print(data)
 
-        return data.to_json(orient="table")
+        return data
     except Exception as err:
         raise Exception(err)
 
