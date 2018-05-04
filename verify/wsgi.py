@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/
 """
 
 import os
-#from django.contrib.auth.handlers.modwsgi import check_password
+from django.contrib.auth.handlers.modwsgi import check_password
 
 from django.core.wsgi import get_wsgi_application
 
