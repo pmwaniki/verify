@@ -57,7 +57,7 @@ class DictField(models.Field):
     def get_prep_value(self, value):
         if value is None:
             return None
-        return json.dumps(value)
+        return json.dumps(value,sort_keys=True)
 
 class ListField(models.Field):
     def __init__(self,max_length,sort=False,*args,**kwargs):
@@ -84,8 +84,8 @@ class ListField(models.Field):
         if value is None:
             return None
         if self.sort:
-            return json.dumps(sorted(value))
-        return json.dumps(value)
+            return json.dumps(sorted(value),sort_keys=True)
+        return json.dumps(value,sort_keys=True)
 
 class Validation(models.Model):
     validation_id=models.CharField(unique=True,max_length=30,verbose_name="Validation id")
