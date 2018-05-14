@@ -11,6 +11,7 @@ urlpatterns=[
 	url(r"^issues/$", views.issues),
 	url(r"^validations/$",views.get_validations),
 	url(r"^history/$",views.history),
+	url(r'change_password/',views.change_password),
 
 ]
 

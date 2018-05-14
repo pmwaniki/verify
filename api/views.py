@@ -9,6 +9,7 @@ from api.serializers import ImageSerializer, Hospital, HospitalSerializer, Valid
 from rest_framework import status
 import json
 from api.utils import get_errors
+from django.contrib.auth import authenticate
 
 
 # Create your views here.
@@ -125,3 +126,21 @@ def history(request, format=None):
         #print(new_result)
 
         return Response(new_result)
+
+
+@api_view(['POST'])
+def change_password(request,format=None):
+    username=request.data.get("username", None)
+    password=request.data.get("password", None)
+    new_password=request.data.get("new_password", None)
+    #print(request.data)
+    #print("User %s changing password from %s to %s" % (username,password,new_password))
+
+    user=authenticate(username=username, password=password)
+    if user is not None:
+        user.set_password(new_password)
+        user.save()
+        return Response(status=status.HTTP_200_OK,data="Password changed successfully")
+
+    else:
+        return Response(status=status.HTTP_401_UNAUTHORIZED,data= "Wrong password")
