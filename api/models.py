@@ -14,18 +14,7 @@ class Hospital(models.Model):
 def get_upload_filename(instance, filname):
     return "uploaded_media/file_%s %s" % (time.strftime("%Y-%m-%d %H_%M_%S"), filname)
 
-class Image(models.Model):
 
-    file_types = ((1, "jpeg/png"), (2, "pdf"))
-    user=models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
-    hosp_id = models.ForeignKey(Hospital,on_delete=models.CASCADE)
-    record_id=models.CharField(max_length=100,verbose_name="Record id")
-    ipno = models.CharField(max_length=250, verbose_name="iP Number")
-    date_created=models.DateField(auto_now_add=True)
-    file_path = models.FileField(upload_to=get_upload_filename, verbose_name= "image file")
-
-    def __str__(self):
-        return 'Hospital: {0}, ipno: {1}'.format(self.hosp_id, self.ipno)
 
 
 
@@ -101,3 +90,18 @@ class History(models.Model):
     checked=models.BooleanField(default=False,help_text="Verified?")
     note=models.TextField(max_length=1000,default="")
     date_created=models.DateField(auto_now=True,help_text="Date created")
+
+
+class Image(models.Model):
+
+    file_types = ((1, "jpeg/png"), (2, "pdf"))
+    user=models.ForeignKey(User,blank=True,null=True,on_delete=models.CASCADE)
+    hosp_id = models.ForeignKey(Hospital,on_delete=models.CASCADE)
+    record_id=models.CharField(max_length=100,verbose_name="Record id")
+    ipno = models.CharField(max_length=250, verbose_name="iP Number")
+    date_created=models.DateField(auto_now_add=True)
+    file_path = models.FileField(upload_to=get_upload_filename, verbose_name= "image file")
+    validation=models.ForeignKey(Validation,on_delete=models.CASCADE,null=True)
+
+    def __str__(self):
+        return 'Hospital: {0}, ipno: {1}'.format(self.hosp_id, self.ipno)
