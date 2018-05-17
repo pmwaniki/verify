@@ -6,7 +6,7 @@ class ValidationAdmin(admin.ModelAdmin):
     list_display=('validation_id' ,'name', 'field_unique' ,'script', 'mapping')
 
 class ImageAdmin(admin.ModelAdmin):
-    list_display=('user' ,'hosp_id', 'record_id' ,'ipno', 'date_created')
+    list_display=('user' ,'hosp_id', 'record_id' ,'ipno','validation', 'date_created')
 
 class HistoryAdmin(admin.ModelAdmin):
     list_display=('validation' ,'values','checked','note','date_created')

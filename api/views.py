@@ -40,8 +40,17 @@ def root_view(request, format=None):
 @parser_classes((MultiPartParser,))
 def create_image(request, format=None):
     if request.method == "POST":
-        print(request.data)
-        serializer = ImageSerializer(data=request.data)
+        data=request.data
+        print(data)
+        validation_id=data.get("validation", None)
+        print(validation_id)
+        if validation_id is not None:
+            validation=Validation.objects.get(validation_id=validation_id)
+            print(validation)
+            data['validation']=validation.id
+            print(data)
+
+        serializer = ImageSerializer(data=data)
         if serializer.is_valid():
             print(serializer.validated_data)
             if request.user.id is None:

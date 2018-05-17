@@ -84,6 +84,9 @@ class Validation(models.Model):
     script=models.CharField(max_length=100,verbose_name="Location of Error script")
     mapping=DictField(max_length=500,verbose_name="Mapping",help_text="Dict of mapping between  {'variable in error script':'variable in image database'}")
 
+    def __str__(self):
+        return "%s: %s" % (self.id,self.name)
+
 class History(models.Model):
     validation=models.ForeignKey(Validation,on_delete=models.CASCADE)
     values=DictField(max_length=1000,help_text="Unique identifier")

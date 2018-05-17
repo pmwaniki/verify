@@ -4,7 +4,7 @@ from rest_framework import serializers
 class ImageSerializer(serializers.ModelSerializer):
 	class Meta:
 		model=Image
-		fields=['hosp_id','record_id','ipno','date_created','file_path']
+		fields=['hosp_id','record_id','ipno','date_created','file_path','validation']
 
 
 
