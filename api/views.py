@@ -121,7 +121,7 @@ def history(request, format=None):
 
         except :
             print("Unable to get", data["validation"])
-            return Response("Something went wrong. Could not save modification")
+            return Response("Something went wrong. Could not save modification",status=status.HTTP_400_BAD_REQUEST)
 
         if data.get('values') is not None:
             queryset=History.objects.get(validation=validation.id,values=data['values'])
