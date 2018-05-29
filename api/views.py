@@ -116,7 +116,12 @@ def history(request, format=None):
     if request.method == "POST":
         data = request.data
         print(data)
-        validation=Validation.objects.get(validation_id=data["validation"])
+        try:
+            validation=Validation.objects.get(validation_id=data["validation"])
+
+        except :
+            print("Unable to get", data["validation"])
+            return Response("Something went wrong. Could not save modification")
 
         if data.get('values') is not None:
             queryset=History.objects.get(validation=validation.id,values=data['values'])
