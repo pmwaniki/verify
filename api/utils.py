@@ -10,7 +10,7 @@ import os
 
 data_path=os.path.join(BASE_DIR,'api/tmp')
 # rScript=os.path.join(BASE_DIR,'../R-gen-errors/00-main.R')
-rScript=os.path.join('/home/pmwaniki/Dropbox/http/cin-web/pneum_reanalysis/pneum_reanalysis.py')
+rScript=os.path.join('/home/pmwaniki/Dropbox/http/cin-web/R-gen-errors/00-main-neonatal.R')
 
 
 def genIssues(rScript, outCsv="errors.csv", start=None, stop=None):
