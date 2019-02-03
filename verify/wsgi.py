@@ -8,9 +8,9 @@ https://docs.djangoproject.com/en/1.11/howto/deployment/wsgi/
 """
 
 import os
-import django.contrib.auth.handlers.modwsgi
-def check_password(environ, user, password):
-    return django.contrib.auth.handlers.modwsgi.check_password(environ, user, password)
+# import django.contrib.auth.handlers.modwsgi
+# def check_password(environ, user, password):
+#     return django.contrib.auth.handlers.modwsgi.check_password(environ, user, password)
 
 from django.core.wsgi import get_wsgi_application
 
