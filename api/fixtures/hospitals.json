@@ -13,6 +13,10 @@
   {"model": "api.Hospital", "fields": {"id": 68, "name": "Kitale District Hospital"}},
   {"model": "api.Hospital", "fields": {"id": 70, "name": "Mbale Rural Health DC Hospital"}},
   {"model": "api.Hospital", "fields": {"id": 71, "name": "Embu Provincial General Hospital"}},
-  {"model": "api.Hospital", "fields": {"id": 72, "name": "Pumwani Maternity Hospital"}}
+  {"model": "api.Hospital", "fields": {"id": 72, "name": "Pumwani Maternity Hospital"}},
+  {"model": "api.Hospital", "fields": {"id": 44, "name": "Jaramogi Oginga Odinga TRH"}},
+  {"model": "api.Hospital", "fields": {"id": 43, "name": "Homabay County Referral Hospital"}},
+  {"model": "api.Hospital", "fields": {"id": 41, "name": "Thika Level 5 Hospital"}},
+  {"model": "api.Hospital", "fields": {"id": 76, "name": "Bungoma County Referral Hospital"}}
 ]
 

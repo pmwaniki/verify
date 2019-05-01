@@ -94,6 +94,9 @@ class History(models.Model):
     note=models.TextField(max_length=1000,default="")
     date_created=models.DateField(auto_now=True,help_text="Date created")
 
+    class Meta:
+        unique_together = ('validation', 'values',)
+
 
 class Image(models.Model):
 

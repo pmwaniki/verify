@@ -81,7 +81,7 @@ def issues(request, format=None):  # issues?validation=pneum_reanalysis&start=20
         for index,row in data.iterrows():
             unique_vals =json.loads(row[unique_keys].to_json())
             history = History(validation=val, values=unique_vals)
-            existing=History.objects.filter(values=history.values)
+            existing=History.objects.filter(validation=history.validation,values=history.values)
             if len(existing)==0:
                 history.save()
         return Response(json.loads(data.to_json(orient="table")), status=status.HTTP_200_OK)
@@ -119,16 +119,18 @@ def history(request, format=None):
         try:
             validation=Validation.objects.get(validation_id=data["validation"])
 
-        except :
+        except Exception as e:
             print("Unable to get", data["validation"])
+            print(e)
             return Response("Something went wrong. Could not get validation",status=status.HTTP_400_BAD_REQUEST)
 
         if data.get('values') is not None:
             try:
                 queryset=History.objects.get(validation=validation.id,values=data['values'])
 
-            except:
+            except Exception as e:
                 print("Unable to get", data["validation"])
+                print(e)
                 return Response("Something went wrong. Could not save modification", status=status.HTTP_400_BAD_REQUEST)
 
 

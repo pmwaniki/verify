@@ -1,6 +1,7 @@
 #Dont push database
 db.sqlite3
 static/
+media/
 .directory
 .idea/
 api/tmp
@@ -14,3 +15,4 @@ api/tmp
 **/__pycache__/*
 api/__pycache__/views.cpython-36.pyc
 api/__pycache__/views.cpython-34.pyc
+api/__pycache__/
