@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: TrackErrors
+      MYSQL_USER: TrackErrors
+      MYSQL_PASSWORD: letmein12
+    volumes:
+    - ./mysql:/docker-entrypoint-initdb.d/:ro
+    - /var/www/verify/mysql:/var/lib/mysql
+    ports:
+    - '3306:3306'
+    container_name: verify-mariadb
+
+
+  app:
+    build: .
+    container_name: verify-app
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+    - .:/code
+    - /var/www/verify/media:/verify-app/media
+    - /var/www/verify/static:/verify-app/static
+    ports:
+    - '8000:8000'
+    depends_on:
+      - db
+    environment:
+      VERIFY_MYSQL_HOST: db
+      VERIFY_MYSQL_DATABASE: TrackErrors
+      VERIFY_MYSQL_USER: TrackErrors
+      VERIFY_MYSQL_PASSWORD: letmein12
+      VERIFY_MYSQL_PORT: 3306
+
+  nginx:
+    container_name: verify-nginx
+    build: ./nginx
+    ports:
+    - 5000:80
+    depends_on:
+      - app

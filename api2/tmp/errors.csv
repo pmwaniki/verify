@@ -1,0 +1,11 @@
+,id,issue,ipno,hosp_id,date_adm,date_discharge,date_today,pen_pres,pen1_dose,pen1_freq,pen1_date,gent1_pres,gent1_dose,gent1_freq,genta1_date,amox1_pres,amox1_dose,amox1_freq,amox1_date,ceftri1_pres,ceftri1_date,caf1_pres,caf1_date,metr1_pres,metr1_date,cotrimox1_pres,cotrimox1_date
+0,6608369,Missing dose or frequency,10403/16,Busia DH,2016-11-03,2016-11-10,2016-11-14,No,,,,No,,,,Yes,10.0,,2016-11-03,No,,No,,No,,No,
+1,6606589,No admission antibiotics,2545/16,Busia DH,2016-03-12,2016-03-13,2016-03-14,No,,,,No,,,,No,,,,No,,No,,No,,No,
+2,6606844,Missing dose or frequency,3422/16,Busia DH,2016-04-06,2016-04-09,2016-04-11,Yes,350000.0,,2016-04-06,Yes,50.0,OD/once a day/24hrly,2016-04-06,Yes,250.0,BD/twice a day/12hrly,2016-04-06,No,,No,,No,,No,
+3,6608248,Missing dose or frequency,4100/13 POPC 2936/14,Busia DH,2016-10-23,2016-10-25,2016-10-26,Yes,800000.0,QID/4 times a day/6hrly,2016-10-23,Yes,,OD/once a day/24hrly,2016-10-23,No,,,,No,,No,,No,,No,
+4,6607136,No admission antibiotics,4924/16,Busia DH,2016-05-25,2016-05-28,2016-05-30,No,,,,No,,,,Yes,2.0,BD/twice a day/12hrly,2016-05-27,No,,No,,No,,No,
+5,6607136,Missing weight,4924/16,Busia DH,2016-05-25,2016-05-28,2016-05-30,No,,,,No,,,,Yes,2.0,BD/twice a day/12hrly,2016-05-27,No,,No,,No,,No,
+6,6607197,No admission antibiotics,5160/16,Busia DH,2016-05-31,2016-06-02,2016-06-03,No,,,,No,,,,No,,,,No,,No,,No,,No,
+7,6607269,No admission antibiotics,5396/16,Busia DH,2016-06-07,2016-06-12,2016-06-13,Yes,545000.0,QID/4 times a day/6hrly,2016-06-09,Yes,82.0,BD/twice a day/12hrly,2016-06-09,No,,,,No,,No,,No,,No,
+8,6607295,No admission antibiotics,5437/16,Busia DH,2016-06-08,2016-06-14,2016-06-16,Yes,350000.0,QID/4 times a day/6hrly,2016-06-11,Yes,52.5,BD/twice a day/12hrly,2016-06-11,No,,,,Yes,2016-06-13,No,,No,,No,
+9,6607401,Missing dose or frequency,5917/16,Busia DH,2016-06-19,2016-06-23,2016-06-24,Yes,435000.0,QID/4 times a day/6hrly,2016-06-19,Yes,65.0,,2016-06-19,No,,,,No,,No,,No,,No,

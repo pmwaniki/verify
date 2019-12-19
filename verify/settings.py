@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+def get_env_value(env_variable):
+    try:
+      	return os.environ[env_variable]
+    except KeyError:
+        error_msg = 'Set the {} environment variable'.format(env_variable)
+        raise Exception(error_msg)
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -38,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
+    'api2',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
@@ -82,6 +91,11 @@ WSGI_APPLICATION = 'verify.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'NAME': get_env_value("VERIFY_MYSQL_DATABASE"),
+        'HOST': get_env_value("VERIFY_MYSQL_HOST"),
+        'USER': get_env_value("VERIFY_MYSQL_USER"),
+        'PASSWORD': get_env_value("VERIFY_MYSQL_PASSWORD"),
+        'PORT': get_env_value("VERIFY_MYSQL_PORT"),
         'OPTIONS': {
             'read_default_file': os.path.join(BASE_DIR, 'my.cnf'),
         }
@@ -127,11 +141,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join('/verify-app', "static")
 
 
 # MEDIA
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join('/verify-app', "media")
 MEDIA_URL='/media/'
 
 #cross origin request
