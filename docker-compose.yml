@@ -14,20 +14,20 @@ services:
     - ./mysql:/docker-entrypoint-initdb.d/:ro
     - /var/www/verify/mysql:/var/lib/mysql
     ports:
-    - '3306:3306'
+    - '3307:3306'
     container_name: verify-mariadb
 
 
   app:
     build: .
     container_name: verify-app
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: gunicorn verify.wsgi:application --bind 0.0.0.0:8000
     volumes:
     - .:/code
     - /var/www/verify/media:/verify-app/media
     - /var/www/verify/static:/verify-app/static
     ports:
-    - '8000:8000'
+    - '8001:8000'
     depends_on:
       - db
     environment:
@@ -41,6 +41,9 @@ services:
     container_name: verify-nginx
     build: ./nginx
     ports:
-    - 5000:80
+    - 5004:80
     depends_on:
       - app
+    volumes:
+      - /var/www/verify/media:/files/media
+      - /var/www/verify/static:/files/static

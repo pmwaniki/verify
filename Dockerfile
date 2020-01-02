@@ -6,9 +6,9 @@ RUN mkdir -p /verify-app/static
 
 WORKDIR /code
 COPY requirements.txt /code/
-RUN apt-get update
-RUN apt-get install python3-dev default-libmysqlclient-dev  -y
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN apt-get update \
+    && apt-get install python3-dev default-libmysqlclient-dev  -y \
+    && pip install --upgrade pip && pip install -r requirements.txt
 #COPY . /code/
 
 EXPOSE 8000

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import time
 import json
+import ast
 
 # Create your models here.
 class Hospital(models.Model):
@@ -81,7 +82,7 @@ class Validation(models.Model):
     name=models.CharField(max_length=100,verbose_name="Name of validation")
     field_unique=ListField(max_length=500,verbose_name="Unique Fields")
     last_updated=models.DateTimeField(verbose_name="Last updated",blank=True,null=True)
-    script=models.CharField(max_length=100,verbose_name="Location of Error script")
+    url=models.URLField(verbose_name="Url of error api")
     mapping=DictField(max_length=500,verbose_name="Mapping",help_text="Dict of mapping between  {'variable in error script':'variable in image database'}")
 
     def __str__(self):

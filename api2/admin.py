@@ -3,7 +3,7 @@ from api2.models import Validation, Image,History,Hospital
 # Register your models here.
 
 class ValidationAdmin(admin.ModelAdmin):
-    list_display=('validation_id' ,'name', 'field_unique' ,'script', 'mapping')
+    list_display=('validation_id' ,'name', 'field_unique' ,'url', 'mapping')
 
 class ImageAdmin(admin.ModelAdmin):
     list_display=('user' ,'hosp_id', 'record_id' ,'ipno','validation', 'date_created')

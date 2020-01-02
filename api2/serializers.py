@@ -1,4 +1,4 @@
-from api.models import Image, Validation,History,Hospital
+from api2.models import Image, Validation,History,Hospital
 from rest_framework import serializers
 
 class ImageSerializer(serializers.ModelSerializer):
