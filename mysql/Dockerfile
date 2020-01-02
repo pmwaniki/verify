@@ -1,4 +1,4 @@
-FROM mariadb:10.2
+FROM mariadb:10.0
 #COPY 01-init.sql /docker-entrypoint-initdb.d/
 RUN apt-get update \
  && apt-get install --no-install-recommends -y tzdata \
