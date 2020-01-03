@@ -16,6 +16,7 @@ services:
     ports:
     - '3307:3306'
     container_name: verify-mariadb
+    restart: always
 
 
   app:
@@ -36,6 +37,7 @@ services:
       VERIFY_MYSQL_USER: TrackErrors
       VERIFY_MYSQL_PASSWORD: letmein12
       VERIFY_MYSQL_PORT: 3306
+    restart: always
 
   nginx:
     container_name: verify-nginx
@@ -47,3 +49,4 @@ services:
     volumes:
       - /var/www/verify/media:/files/media
       - /var/www/verify/static:/files/static
+    restart: always
