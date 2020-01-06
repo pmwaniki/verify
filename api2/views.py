@@ -15,8 +15,8 @@ from django.contrib.auth import authenticate
 # Create your views here.
 
 @api_view(['GET'])
-#@authentication_classes((TokenAuthentication,))
-#@permission_classes((IsAuthenticated,))
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
 def root_view(request, format=None):
     images = Image.objects.all()
     print(request.META)
@@ -35,8 +35,8 @@ def root_view(request, format=None):
 
 
 @api_view(['POST'])
-#@authentication_classes((TokenAuthentication,))
-#@permission_classes((IsAuthenticated,))
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
 @parser_classes((MultiPartParser,))
 def create_image(request, format=None):
     if request.method == "POST":
@@ -97,8 +97,8 @@ def get_validations(request, format=None):
 
 
 @api_view(['GET', 'POST'])
-#@authentication_classes((TokenAuthentication,))
-#@permission_classes((IsAuthenticated,))
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
 def history(request, format=None):
     if request.method == "GET":
         validation_type = request.query_params.get("validation")
