@@ -91,6 +91,7 @@ WSGI_APPLICATION = 'verify.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'CONN_MAX_AGE': 200,
         'NAME': get_env_value("VERIFY_MYSQL_DATABASE"),
         'HOST': get_env_value("VERIFY_MYSQL_HOST"),
         'USER': get_env_value("VERIFY_MYSQL_USER"),
