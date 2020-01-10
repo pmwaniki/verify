@@ -10,6 +10,7 @@ from rest_framework import status
 import json
 from api2.utils import get_errors
 from django.contrib.auth import authenticate
+import django.db
 
 
 # Create your views here.
@@ -18,6 +19,7 @@ from django.contrib.auth import authenticate
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 def root_view(request, format=None):
+    django.db.close_old_connections()
     images = Image.objects.all()
     print(request.META)
     print(request.auth)
@@ -39,6 +41,7 @@ def root_view(request, format=None):
 @permission_classes((IsAuthenticated,))
 @parser_classes((MultiPartParser,))
 def create_image(request, format=None):
+    django.db.close_old_connections()
     if request.method == "POST":
         data=request.data
         print(data)
@@ -65,6 +68,7 @@ def create_image(request, format=None):
 
 @api_view(['GET'])
 def get_hospitals(request, format=None):
+    django.db.close_old_connections()
     hospitals = Hospital.objects.all()
     serial = HospitalSerializer(hospitals, many=True)
     return Response(serial.data)
@@ -72,6 +76,7 @@ def get_hospitals(request, format=None):
 
 @api_view(['GET'])
 def issues(request, format=None):  # issues?validation=pneum_reanalysis&start=2016-05-01
+    django.db.close_old_connections()
     query = dict(request.query_params)
     print(query)
     val = Validation.objects.get(validation_id=query.get('validation')[0])
@@ -91,6 +96,7 @@ def issues(request, format=None):  # issues?validation=pneum_reanalysis&start=20
 
 @api_view(['GET'])
 def get_validations(request, format=None):
+    django.db.close_old_connections()
     query = list(Validation.objects.all().values())
     #serializer = ValidationSerializer(query, many=True)
     return Response(query)
@@ -100,6 +106,7 @@ def get_validations(request, format=None):
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 def history(request, format=None):
+    django.db.close_old_connections()
     if request.method == "GET":
         validation_type = request.query_params.get("validation")
         print(validation_type)
@@ -158,6 +165,7 @@ def history(request, format=None):
 
 @api_view(['POST'])
 def change_password(request,format=None):
+    django.db.close_old_connections()
     username=request.data.get("username", None)
     password=request.data.get("password", None)
     new_password=request.data.get("new_password", None)

@@ -10,6 +10,7 @@ import os
 import requests
 import json
 import pandas as pd
+import django.db
 
 data_path=os.path.join(BASE_DIR,'api/tmp')
 # rScript=os.path.join(BASE_DIR,'../R-gen-errors/00-main.R')
@@ -69,6 +70,7 @@ def get_errors(request):
     if hosp is not None:
         hosp=hosp[0]
 
+    django.db.close_old_connections()
     validation=Validation.objects.get(validation_id=validation_id)
     validation_url=validation.url
     # error_module=importlib.import_module('api.error_scripts.%s' % script)
@@ -77,6 +79,8 @@ def get_errors(request):
     try:
         data = genIssuesApi(url=validation_url, start=start, stop=stop,hosp=hosp)
         now = datetime.now(tz=pytz.timezone("Africa/Nairobi"))
+        django.db.close_old_connections()
+        validation = Validation.objects.get(validation_id=validation_id)
         validation.last_updated = now
         validation.save()
         # print(data)
