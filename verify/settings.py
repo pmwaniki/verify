@@ -148,6 +148,7 @@ STATIC_ROOT = os.path.join('/verify-app', "static")
 # MEDIA
 MEDIA_ROOT = os.path.join('/verify-app', "media")
 MEDIA_URL='/media/'
+FILE_UPLOAD_PERMISSIONS = 0o644
 
 #cross origin request
 CORS_ORIGIN_ALLOW_ALL = True #allow from request from all
